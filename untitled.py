@@ -5,50 +5,18 @@
 # Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
-import time
-from myclock import Clock
+
+
 from PyQt5 import QtCore, QtGui, QtWidgets
-from socket import *
-from record import Recorder
-ADDR = ('127.0.0.1', 8000)
+
+
 class Ui_Form(object):
-    def __init__(self):
-        super().__init__()
-
-        self.s = socket()
-        self.rec = Recorder()
-        self.clo = Clock()
-
-    def fill_single(self, d):
-        tmp = d.split(' : ')
-        self.first.setText(tmp[0])
-        self.radioBtn_1_A.setText(tmp[1])
-        self.radioBtn_1_B.setText(tmp[2])
-        self.radioBtn_1_C.setText(tmp[3])
-        self.radioBtn_1_D.setText(tmp[4])
-
-    def fill_multy(self, d):
-        tmp = d.split(' : ')
-        self.second.setText(tmp[0])
-        self.checkBox_1_A.setText(tmp[1])
-        self.checkBox_1_B.setText(tmp[2])
-        self.checkBox_1_C.setText(tmp[3])
-        self.checkBox_1_D.setText(tmp[4])
-
-    def fill_read(self,d):
-        self.third.setText(d)
-
     def setupUi(self, Form):
-        # self.button_clicked_signal = pyqtSignal()
         Form.setObjectName("Form")
         Form.resize(1272, 749)
-
-        #交卷
         self.closeWinBtn = QtWidgets.QPushButton(Form)
         self.closeWinBtn.setGeometry(QtCore.QRect(1060, 680, 93, 28))
         self.closeWinBtn.setObjectName("closeWinBtn")
-        self.closeWinBtn.clicked.connect(self.do_submit)
-        #试题
         self.groupBox = QtWidgets.QGroupBox(Form)
         self.groupBox.setGeometry(QtCore.QRect(10, 20, 731, 711))
         self.groupBox.setObjectName("groupBox")
@@ -61,170 +29,97 @@ class Ui_Form(object):
         self.third = QtWidgets.QLabel(self.groupBox)
         self.third.setGeometry(QtCore.QRect(20, 430, 901, 16))
         self.third.setObjectName("third")
-        #录音
         self.startButton = QtWidgets.QPushButton(self.groupBox)
         self.startButton.setGeometry(QtCore.QRect(100, 630, 93, 28))
         self.startButton.setObjectName("startButton")
-        self.startButton.clicked.connect(self.do_startRecord)
         self.stopButton = QtWidgets.QPushButton(self.groupBox)
         self.stopButton.setGeometry(QtCore.QRect(520, 630, 93, 28))
         self.stopButton.setObjectName("stopButton")
-        self.stopButton.clicked.connect(self.do_stopRecord)
-        self.widget = QtWidgets.QWidget(self.groupBox)
-        self.widget.setGeometry(QtCore.QRect(71, 71, 531, 99))
-        self.widget.setObjectName("widget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(self.groupBox)
+        self.layoutWidget.setGeometry(QtCore.QRect(71, 71, 531, 99))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.radioBtn_1_A = QtWidgets.QRadioButton(self.widget)
-        self.radioBtn_1_A.setObjectName("radioBtn_1_A")
-        self.verticalLayout.addWidget(self.radioBtn_1_A)
-        self.radioBtn_1_B = QtWidgets.QRadioButton(self.widget)
-        self.radioBtn_1_B.setObjectName("radioBtn_1_B")
-        self.verticalLayout.addWidget(self.radioBtn_1_B)
-        self.radioBtn_1_C = QtWidgets.QRadioButton(self.widget)
-        self.radioBtn_1_C.setObjectName("radioBtn_1_C")
-        self.verticalLayout.addWidget(self.radioBtn_1_C)
-        self.radioBtn_1_D = QtWidgets.QRadioButton(self.widget)
-        self.radioBtn_1_D.setObjectName("radioBtn_1_D")
-        self.verticalLayout.addWidget(self.radioBtn_1_D)
-        self.widget1 = QtWidgets.QWidget(self.groupBox)
-        self.widget1.setGeometry(QtCore.QRect(71, 251, 531, 99))
-        self.widget1.setObjectName("widget1")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.widget1)
+        self.radioButton_5 = QtWidgets.QRadioButton(self.layoutWidget)
+        self.radioButton_5.setObjectName("radioButton_5")
+        self.verticalLayout.addWidget(self.radioButton_5)
+        self.radioButton_8 = QtWidgets.QRadioButton(self.layoutWidget)
+        self.radioButton_8.setObjectName("radioButton_8")
+        self.verticalLayout.addWidget(self.radioButton_8)
+        self.radioButton_6 = QtWidgets.QRadioButton(self.layoutWidget)
+        self.radioButton_6.setObjectName("radioButton_6")
+        self.verticalLayout.addWidget(self.radioButton_6)
+        self.radioButton_7 = QtWidgets.QRadioButton(self.layoutWidget)
+        self.radioButton_7.setObjectName("radioButton_7")
+        self.verticalLayout.addWidget(self.radioButton_7)
+        self.layoutWidget1 = QtWidgets.QWidget(self.groupBox)
+        self.layoutWidget1.setGeometry(QtCore.QRect(71, 251, 531, 99))
+        self.layoutWidget1.setObjectName("layoutWidget1")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.checkBox_1_A = QtWidgets.QCheckBox(self.widget1)
-        self.checkBox_1_A.setObjectName("checkBox_1_A")
-        self.verticalLayout_2.addWidget(self.checkBox_1_A)
-        self.checkBox_1_B = QtWidgets.QCheckBox(self.widget1)
-        self.checkBox_1_B.setObjectName("checkBox_1_B")
-        self.verticalLayout_2.addWidget(self.checkBox_1_B)
-        self.checkBox_1_C = QtWidgets.QCheckBox(self.widget1)
-        self.checkBox_1_C.setObjectName("checkBox_1_C")
-        self.verticalLayout_2.addWidget(self.checkBox_1_C)
-        self.checkBox_1_D = QtWidgets.QCheckBox(self.widget1)
-        self.checkBox_1_D.setObjectName("checkBox_1_D")
-        self.verticalLayout_2.addWidget(self.checkBox_1_D)
+        self.checkBox_4 = QtWidgets.QCheckBox(self.layoutWidget1)
+        self.checkBox_4.setObjectName("checkBox_4")
+        self.verticalLayout_2.addWidget(self.checkBox_4)
+        self.checkBox_3 = QtWidgets.QCheckBox(self.layoutWidget1)
+        self.checkBox_3.setObjectName("checkBox_3")
+        self.verticalLayout_2.addWidget(self.checkBox_3)
+        self.checkBox = QtWidgets.QCheckBox(self.layoutWidget1)
+        self.checkBox.setObjectName("checkBox")
+        self.verticalLayout_2.addWidget(self.checkBox)
+        self.checkBox_2 = QtWidgets.QCheckBox(self.layoutWidget1)
+        self.checkBox_2.setObjectName("checkBox_2")
+        self.verticalLayout_2.addWidget(self.checkBox_2)
         self.groupBox_2 = QtWidgets.QGroupBox(Form)
         self.groupBox_2.setGeometry(QtCore.QRect(770, 20, 431, 291))
         self.groupBox_2.setObjectName("groupBox_2")
-        self.rec = Recorder()
-        self.begin = 0
-        #登录
-        self.loginButton = QtWidgets.QPushButton(self.groupBox_2)
-        self.loginButton.setGeometry(QtCore.QRect(280, 190, 93, 28))
-        self.loginButton.setObjectName("loginButton")
-        self.loginButton.clicked.connect(self.do_login)
+        self.pushButton = QtWidgets.QPushButton(self.groupBox_2)
+        self.pushButton.setGeometry(QtCore.QRect(280, 190, 93, 28))
+        self.pushButton.setObjectName("pushButton")
         self.label_4 = QtWidgets.QLabel(self.groupBox_2)
         self.label_4.setGeometry(QtCore.QRect(30, 50, 72, 15))
         self.label_4.setObjectName("label_4")
         self.label_5 = QtWidgets.QLabel(self.groupBox_2)
         self.label_5.setGeometry(QtCore.QRect(30, 100, 72, 15))
         self.label_5.setObjectName("label_5")
-        self.nameEdit = QtWidgets.QLineEdit(self.groupBox_2)
-        self.nameEdit.setGeometry(QtCore.QRect(210, 50, 113, 21))
-        self.nameEdit.setObjectName("nameEdit")
-        self.passwdEdit = QtWidgets.QLineEdit(self.groupBox_2)
-        self.passwdEdit.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.passwdEdit.setGeometry(QtCore.QRect(210, 100, 113, 21))
-        self.passwdEdit.setObjectName("passwdEdit")
+        self.lineEdit = QtWidgets.QLineEdit(self.groupBox_2)
+        self.lineEdit.setGeometry(QtCore.QRect(210, 50, 113, 21))
+        self.lineEdit.setObjectName("lineEdit")
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.groupBox_2)
+        self.lineEdit_2.setGeometry(QtCore.QRect(210, 100, 113, 21))
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.groupBox_3 = QtWidgets.QGroupBox(Form)
+        self.groupBox_3.setGeometry(QtCore.QRect(770, 340, 431, 171))
+        self.groupBox_3.setObjectName("groupBox_3")
+        self.lcdNumber = QtWidgets.QLCDNumber(self.groupBox_3)
+        self.lcdNumber.setGeometry(QtCore.QRect(23, 52, 381, 91))
+        self.lcdNumber.setObjectName("lcdNumber")
 
         self.retranslateUi(Form)
-
+        self.closeWinBtn.clicked.connect(Form.close)
+        QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "英语测试"))
+        Form.setWindowTitle(_translate("Form", "Form"))
         self.closeWinBtn.setText(_translate("Form", "交卷"))
         self.groupBox.setTitle(_translate("Form", "答题"))
-        self.first.setText(_translate("Form", "单选题"))
-        self.second.setText(_translate("Form", "多选题"))
-        self.third.setText(_translate("Form", "朗读题"))
+        self.first.setText(_translate("Form", "TextLabel"))
+        self.second.setText(_translate("Form", "TextLabel"))
+        self.third.setText(_translate("Form", "TextLabel"))
         self.startButton.setText(_translate("Form", "开始录音"))
         self.stopButton.setText(_translate("Form", "停止录音"))
-        self.radioBtn_1_A.setText(_translate("Form", "RadioButton"))
-        self.radioBtn_1_B.setText(_translate("Form", "RadioButton"))
-        self.radioBtn_1_C.setText(_translate("Form", "RadioButton"))
-        self.radioBtn_1_D.setText(_translate("Form", "RadioButton"))
-        self.checkBox_1_A.setText(_translate("Form", "CheckBox"))
-        self.checkBox_1_B.setText(_translate("Form", "CheckBox"))
-        self.checkBox_1_C.setText(_translate("Form", "CheckBox"))
-        self.checkBox_1_D.setText(_translate("Form", "CheckBox"))
+        self.radioButton_5.setText(_translate("Form", "RadioButton"))
+        self.radioButton_8.setText(_translate("Form", "RadioButton"))
+        self.radioButton_6.setText(_translate("Form", "RadioButton"))
+        self.radioButton_7.setText(_translate("Form", "RadioButton"))
+        self.checkBox_4.setText(_translate("Form", "CheckBox"))
+        self.checkBox_3.setText(_translate("Form", "CheckBox"))
+        self.checkBox.setText(_translate("Form", "CheckBox"))
+        self.checkBox_2.setText(_translate("Form", "CheckBox"))
         self.groupBox_2.setTitle(_translate("Form", "登录"))
-        self.loginButton.setText(_translate("Form", "登录"))
+        self.pushButton.setText(_translate("Form", "登录"))
         self.label_4.setText(_translate("Form", "姓名"))
         self.label_5.setText(_translate("Form", "密码"))
-
-
-    def do_login(self):
-        name = self.nameEdit.text()
-        passwd = self.passwdEdit.text()
-        msg = "L %s %s" % (name, passwd)
-        self.s.connect(ADDR)
-        self.s.send(msg.encode())  # 发送请求
-        data =self.s.recv(128).decode()
-        if data == 'OK':
-            self.groupBox_2.setTitle('登陆成功')
-            self.loginButton.setEnabled(False)
-            data = self.s.recv(4096).decode()
-            self.fill_single(data)
-            data = self.s.recv(4096).decode()
-            self.fill_multy(data)
-            data = self.s.recv(4096).decode()
-            self.fill_read(data)
-        else:
-            print("登录失败")
-
-    def do_submit(self):
-
-        a= 0
-        b=0
-        if self.radioBtn_1_A.isChecked():
-            a=1
-        elif self.radioBtn_1_B.isChecked():
-            a=2
-        elif self.radioBtn_1_C.isChecked():
-            a=3
-        elif self.radioBtn_1_D.isChecked():
-            a=4
-        if self.checkBox_1_A.isChecked():
-            b=b^1
-        if self.checkBox_1_B.isChecked():
-            b=b^2
-        if self.checkBox_1_C.isChecked():
-            b = b ^ 4
-        if self.checkBox_1_D.isChecked():
-            b = b ^ 8
-        msg = "C %d %d" % (a, b)
-        self.s.send(msg.encode())  # 发送请求
-        try:
-            f = open('1_1.wav', 'rb')
-        except Exception:
-            print("该文件不存在")
-        while True:
-            data = f.read(1024)
-            if not data:
-                time.sleep(0.1)
-                self.s.send(b'##')
-                break
-            self.s.send(data)
-        f.close()
-
-
-
-    def do_startRecord(self):
-        self.begin = time.time()
-        print("Start recording")
-        self.rec.start()
-        self.startButton.setEnabled(False)
-
-
-    def do_stopRecord(self):
-        self.rec.stop()
-        fina = time.time()
-        t = fina - self.begin
-        print('录音时间为%ds' % t)
-        self.rec.save("1_1.wav")
-        self.stopButton.setEnabled(False)
-        return False
+        self.groupBox_3.setTitle(_translate("Form", "得分"))

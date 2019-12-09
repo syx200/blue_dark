@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets
 import sys
-from untitled import Ui_Form
+from viewform import Ui_Form
 def show_MainWindow():
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
